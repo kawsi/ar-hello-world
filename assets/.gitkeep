@@ -1,0 +1,4 @@
+# Place here:
+# - marker.png    (source image you want to recognize)
+# - targets.mind  (compiled file from https://hiukim.github.io/mind-ar-js-doc/tools/compile)
+# - sample.glb    (3D model in glTF Binary format)
