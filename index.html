@@ -40,6 +40,20 @@
       background: rgba(230, 57, 136, 0.95);
       transform: translateX(-50%) scale(1.1);
     }
+    .version {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffeb3b;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: "SF Mono", Menlo, monospace;
+      z-index: 11;
+      pointer-events: none;
+    }
   </style>
 
   <!-- A-Frame: 3Dシーンの記述 -->
@@ -51,6 +65,7 @@
 
   <div class="info">📷 マーカーにカメラを向けて、画像をタップ！</div>
   <div class="counter" id="counter">タップしてみて</div>
+  <div class="version">v8</div>
 
   <a-scene
     mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind; uiLoading: no;"
