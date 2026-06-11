@@ -38,20 +38,24 @@
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
+    <a-assets>
+      <img id="overlayImg" src="./assets/overlay.png" crossorigin="anonymous">
+    </a-assets>
+
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <!-- マーカー0番に対するコンテンツ -->
     <a-entity mindar-image-target="targetIndex: 0">
 
-      <!-- "Hello World" の3Dテキスト（マーカー上で軽く上下動） -->
-      <a-text
-        value="Hello World"
+      <!-- 平面グラフィック（マーカー上で軽く上下動） -->
+      <a-image
+        src="#overlayImg"
         position="0 0 0"
-        align="center"
-        color="#00ffcc"
-        scale="1.2 1.2 1.2"
-        animation="property: position; from: 0 0 0; to: 0 0.2 0; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine">
-      </a-text>
+        width="1"
+        height="1"
+        transparent="true"
+        animation="property: position; from: 0 0 0; to: 0 0.1 0; dir: alternate; loop: true; dur: 1500; easing: easeInOutSine">
+      </a-image>
 
     </a-entity>
   </a-scene>
