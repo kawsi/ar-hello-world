@@ -67,7 +67,7 @@
       position="0 0 0"
       look-controls="enabled: false"
       cursor="fuse: false; rayOrigin: mouse;"
-      raycaster="near: 0.1; far: 10000; objects: .clickable;">
+      raycaster="near: 10; far: 10000; objects: .clickable;">
     </a-camera>
 
     <!-- マーカー0番に対するコンテンツ -->
@@ -89,15 +89,42 @@
   </a-scene>
 
   <script>
-    window.addEventListener('load', () => {
-      const counterEl = document.getElementById('counter');
+    const counterEl = document.getElementById('counter');
+    let tapCount = 0;
+
+    function registerTap() {
       const overlay = document.querySelector('#overlay');
-      let tapCount = 0;
+      if (!overlay) {
+        console.log('[AR] overlay not found, retrying...');
+        setTimeout(registerTap, 300);
+        return;
+      }
       overlay.addEventListener('click', () => {
         tapCount++;
         counterEl.textContent = `タップ ${tapCount}`;
         counterEl.classList.add('hit');
         setTimeout(() => counterEl.classList.remove('hit'), 200);
+        console.log('[AR] tap!', tapCount);
+      });
+      console.log('[AR] click handler registered');
+    }
+
+    // a-scene の loaded を待つ
+    document.addEventListener('DOMContentLoaded', () => {
+      const scene = document.querySelector('a-scene');
+      if (scene.hasLoaded) {
+        registerTap();
+      } else {
+        scene.addEventListener('loaded', registerTap);
+      }
+      // ターゲット認識ログ
+      const target = document.querySelector('[mindar-image-target]');
+      target.addEventListener('targetFound', () => {
+        counterEl.textContent = 'マーカー認識OK・タップしてみて';
+        console.log('[AR] targetFound');
+      });
+      target.addEventListener('targetLost', () => {
+        console.log('[AR] targetLost');
       });
     });
   </script>
