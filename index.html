@@ -70,22 +70,17 @@
     <!-- マーカー0番に対するコンテンツ -->
     <a-entity mindar-image-target="targetIndex: 0">
 
-      <!-- 親エンティティ：画像をマーカーに対して垂直に立てる -->
-      <a-entity rotation="90 0 0">
-        <!-- 子：スピン + クリック反応 -->
-        <a-image
-          id="overlay"
-          class="clickable"
-          src="#overlayImg"
-          position="0 0.5 0"
-          width="1"
-          height="1"
-          transparent="true"
-          material="side: double"
-          animation__spin="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 5000; easing: linear"
-          animation__tap="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; dir: alternate; dur: 150; startEvents: click">
-        </a-image>
-      </a-entity>
+      <!-- 平面グラフィック：マーカーと水平、静止、タップ反応のみ -->
+      <a-image
+        id="overlay"
+        class="clickable"
+        src="#overlayImg"
+        position="0 0 0"
+        width="1"
+        height="1"
+        transparent="true"
+        animation__tap="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; dir: alternate; dur: 150; startEvents: click">
+      </a-image>
 
     </a-entity>
   </a-scene>
